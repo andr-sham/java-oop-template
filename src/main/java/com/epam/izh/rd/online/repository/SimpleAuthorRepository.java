@@ -5,7 +5,7 @@ import com.epam.izh.rd.online.entity.Author;
 import java.util.Arrays;
 
 public class SimpleAuthorRepository implements AuthorRepository {
-    Author[] authors = new Author[0];
+    private Author[] authors = new Author[0];
 
 
     @Override
@@ -30,9 +30,10 @@ public class SimpleAuthorRepository implements AuthorRepository {
 
     @Override
     public boolean remove(Author author) {
+        Author[] authorsResult;
         for (int i = 0; i < authors.length; i++) {
             if (authors[i].getName().equals(author.getName()) && authors[i].getLastName().equals(author.getLastName())) {
-                Author[] authorsResult;
+
                 System.arraycopy(authors, i + 1, authors, i, authors.length - i - 1);
                 authorsResult = Arrays.copyOf(authors, authors.length - 1);
                 authors = authorsResult;
