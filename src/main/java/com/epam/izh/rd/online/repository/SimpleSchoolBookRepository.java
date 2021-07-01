@@ -27,17 +27,18 @@ public class SimpleSchoolBookRepository implements BookRepository<SchoolBook> {
 
     @Override
     public boolean removeByName(String name) {
-        SchoolBook[] schoolBooksResult = new SchoolBook[0];
+        boolean bookRemoveCheck =false;
+        SchoolBook[] schoolBooksResult;
         for (int i = 0; i < schoolBooks.length; i++){
             if (schoolBooks[i].getName().equals(name)){
-
+                bookRemoveCheck = true;
                 System.arraycopy(schoolBooks, i + 1, schoolBooks, i, schoolBooks.length - i - 1);
                 schoolBooksResult = Arrays.copyOf(schoolBooks, schoolBooks.length - 1);
                 schoolBooks = schoolBooksResult;
                 i--;
             }
         }
-        return schoolBooksResult.length > 0;
+        return bookRemoveCheck;
 
     }
 
